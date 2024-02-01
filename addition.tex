@@ -1,0 +1,220 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tikz-cd}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+
+
+\title{Your Paper}
+\author{You}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Your abstract.
+\end{abstract}
+
+\section{Introduction}
+\subsection{Pre-req}
+Let $f$ be a homogeneous polynomial in $\mathbb{C}[x,y,z]$ of degree $d+1$ defining a curve $C = V(f)$ and $\delta = P\partial_x+Q\partial_y+R\partial_z$ be a derivation with $P,Q,R$ of the same degree $a$. Assume that $\delta(f) \in Der(f)=\{\delta | \delta(f) \in (f)\}$, without loss of generality we can take $\delta(f)=0$, that is $\delta \in Der_0(f)=\{\delta | \delta(f)=0\}$. Let $\mathcal{T}_f$ be the sheaf of logarithmic derivations of $f$ defined by the exact sequence
+\begin{equation}
+    0 \to \mathcal{T}_f \to \mathcal{O}_{\mathbb{P}^2}^{\oplus 3} \to \mathcal{I}_J(d) \to 0
+\end{equation}
+where $\mathcal{I}_J$ is the ideal sheaf defined by the three partial derivatives of $f$.
+If $\delta$ is a minimal degree derivation then we have an induced section $\tilde{\delta} \in H^0(\mathcal{T}_f(a))$ and a scheme of points $Z$ satisfying the following diagram:
+
+\begin{center}
+	\begin{tikzcd}[ampersand replacement=\&]
+
+		\mathcal{O}_{\mathbb{P}^2}(-a) \ar[equal]{r} \ar[hookrightarrow,"\tilde{\delta}"]{d} \& \mathcal{O}_{\mathbb{P}^2}(-a) \ar[hookrightarrow,"\delta"]{d}  \\
+		\mathcal{T}_f \arrow[hookrightarrow]{r} \ar[twoheadrightarrow]{d} \& \mathcal{O}_{\mathbb{P}^2}^{\oplus 3} \ar[rr,bend left, shift right,"\nabla f"] \ar[twoheadrightarrow,"\alpha"]{r} \arrow[twoheadrightarrow]{d} \& \mathcal{I}_{J}(d) \ar[hookrightarrow]{r} \ar[equal]{d} \& \mathcal{O}_{\mathbb{P}^2}(d) \\
+		\mathcal{I}_Z(a-d) \arrow[hookrightarrow]{r} \& F \arrow[twoheadrightarrow]{r}\& \mathcal{I}_{J}(d)
+	\end{tikzcd}
+\end{center}
+The length of $Z$ can be computed from the second Chern class $c_2(\mathcal{T}_f(a))$ with the additional knowledge that $c_2(\mathcal{T}_f) = d^2 - \sum_{p \in Sing(C)} \tau_p(C)$ where $\tau_p(C)$ is the Tjurina number of the singularity $p$ (the sum for every singular point is called the total Tjurina number).
+
+\begin{lemma}\label{smooth maximal bourbaki}
+    If $C$ is smooth then $a = d$ and $n = d^2$
+\end{lemma}
+\begin{proof}
+    By dualizing the sequence $$0 \to \mathcal{T}_f \to \mathcal{O}_{\mathbb{P}^2}^{\oplus 3} \to \mathcal{O}_{\mathbb{P}^2}(d) \to 0$$
+    we obtain
+    \begin{equation}
+        0 \to \mathcal{O}_{\mathbb{P}^2}(-d) \to \mathcal{O}_{\mathbb{P}^2}^{\oplus 3} \to \mathcal{T}_f(d) \to 0
+    \end{equation}
+    which implies that $H^0(\mathcal{T}_f(d-1))=0$ and $H^0(\mathcal{T}_f(d))\not=0$ so $a = d$ and $n = d^2$.
+\end{proof}
+\begin{lemma}
+Let $\mathcal{O}_{Z(\delta)}$ be the structure sheaf of the zeroes of the three homogeneous forms defining $\delta$ (we will denote this scheme as $Z(\delta)$). Then:
+    \begin{equation}
+        \mathcal{E}xt^1(F,\mathcal{O}_{\mathbb{P}^2}) \cong \mathcal{O}_{Z(\delta)}
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    Dualizing the second column gives us the exact sequence:
+    \begin{equation}
+        0 \to F^* \to \mathcal{O}_{\mathbb{P}^2}^{\oplus 3} \to \mathcal{O}_{\mathbb{P}^2}(a) \to \mathcal{E}xt^1(F,\mathcal{O}_{\mathbb{P}^2}) \to 0
+    \end{equation}
+    which implies that $\mathcal{E}xt^1(F,\mathcal{O}_{\mathbb{P}^2})$ is a quotient of $\mathcal{O}_{\mathbb{P}^2}(a)$ by the image $\Phi$ of $\mathcal{O}_{\mathbb{P}^2}^{\oplus 3} \to \mathcal{O}_{\mathbb{P}^2}(a)$. Analyzing the support of the exact sequence $$0 \to F^* \to \mathcal{O}_{\mathbb{P}^2}^{\oplus 3} \to \Phi \to 0$$ shows us that $\Phi$ is zero exactly at $Z(\delta)$, hence it corresponds to $\mathcal{I}_{Z(\delta)}(a)$.
+\end{proof}
+
+\begin{lemma}
+    $Z$ is contained in $Z(\delta)$.
+\end{lemma}
+\begin{proof}
+By dualizing the third row we obtain
+\begin{equation}
+    0 \to \mathcal{O}_{\mathbb{P}^2}(-d) \to F^* \to \mathcal{O}_{\mathbb{P}^2}(d-a) \to \mathcal{E}xt^1(\mathcal{I}_J(d),\mathcal{O}_{\mathbb{P}^2}) \to \mathcal{E}xt^1(F,\mathcal{O}_{\mathbb{P}^2}) \to \mathcal{E}xt^1(\mathcal{I}_Z(a-d),\mathcal{O}_{\mathbb{P}^2}) \to 0
+\end{equation}
+which simplifies into
+\begin{equation}
+    0 \to \mathcal{O}_{\mathbb{P}^2}(-d) \to F^* \to \mathcal{O}_{\mathbb{P}^2}(d-a) \to \omega_J \to \mathcal{O}_{Z(\delta)} \to \omega_Z \to 0
+\end{equation}
+and hence the support of $\omega_Z$ is contained in $Z(\delta)$.
+\end{proof}
+
+\subsection{Addition of a line}
+Now let $l = l_1*x+l_2*y+l_3*z$ be the equation of a line $L$ with $l_i \in \mathbb{C}$. We can construct a derivation of degree $a+1$ in $Der_0(f*l)$ from $Der_0(f)$ resulting in a morphism:
+\begin{equation}
+    \delta \mapsto l\delta := l*\delta - \frac{\delta(l)*\delta_E}{d+2}
+\end{equation}
+where $\delta_E = x*\partial_x + y*\partial_y + z*\partial_z$ is the Euler derivation. There is then the following commutative diagram:
+\begin{center}
+\begin{tikzcd}[ampersand replacement=\&]
+		\mathcal{O}_{\mathbb{P}^2}(-a-1) \ar[equal]{r} \ar[hookrightarrow,"\tilde{\delta}"]{d} \& \mathcal{O}_{\mathbb{P}^2}(-a-1) \ar[hookrightarrow,"l\delta"]{d}  \\
+		\mathcal{T}_f(-1) \arrow[hookrightarrow]{r} \ar[twoheadrightarrow]{d} \& \mathcal{T}_{f*l} \ar[twoheadrightarrow]{r} \arrow[twoheadrightarrow]{d} \& \mathcal{O}_{L}(a-d-|Z'\cap L|) \ar[equal]{d} \\
+		\mathcal{I}_Z(a-d-1) \arrow[hookrightarrow]{r} \& \mathcal{I}_{Z'}(a-d) \arrow[twoheadrightarrow]{r}\& \mathcal{O}_{L}(a-d-|Z'\cap L|)
+\end{tikzcd}
+\end{center}
+which implies that $Z'$ can be divided by points in the line $L$ and points outside the line, given by $Z$. An interesting fact is that the points in $Z' \cap L$ must be inside $Z(\delta(l))$, while $Z = Z' \setminus L$ are necessarily in the eigenscheme of $\delta$:
+\begin{lemma}
+    $Z' \setminus Z$ is contained in $Z(\delta(l))$ and $Z$ is in the eigenscheme of $\delta$. Furthermore, $Z(\delta(l)) \subset Z(\delta)$.
+\end{lemma}
+\begin{proof}
+We start by remembering that any point in $Z'$ must be in the vanishing of the three homogeneous polynomials constituting $l\delta$, so let $p = (p_1;p_2;p_3) \in Z' \subset V(l\delta)$. We have that $0 = (l*\delta - \frac{\delta(l)*\delta_E}{d+2})|_p$, suppose first that $p$ is not in $Z$ and thus $p \in L$ so that $l(p)=0$. Then $0 = \frac{\delta(l)*\delta_E}{d+2}|_p = \frac{\delta(l)(p)}{d+2}(p_1,p_2,p_3)$ which implies that $\delta(l)(p) = 0$ so $p$ is in $V(\delta(l))$. Now if $p \in Z$ then $p \in Z' \setminus L$, hence $l(p) = \alpha \not = 0$ and $\alpha*(P(p),Q(p),R(p)) = \frac{\delta(l)(p)}{d+1}*(p_1,p_2,p_3)$. We have two cases to consider: If $\delta(l)(p) = 0$ then $P(p) = Q(p) = R(p) = 0$ and if $\delta(l)(p) \not = 0$ we would have that $p$ is a fixed point of the rational map induced by the derivation $\delta$. Either case implies that $p$ is in the eigenscheme of $\delta$.
+
+To prove that $Z(\delta(l)) \subset Z(\delta)$ we consider the following diagram:
+\begin{center}
+\begin{tikzcd}[ampersand replacement=\&]
+		\& \mathcal{O}_{\mathbb{P}^2}(-a) \ar[equal]{r} \ar[hookrightarrow,"\delta"]{d} \& \mathcal{O}_{\mathbb{P}^2}(-a) \ar[hookrightarrow,"\delta(l)"]{d}  \\
+		\mathcal{T}_f \arrow[hookrightarrow]{r} \ar[equal]{d} \& \mathcal{O}_{\mathbb{P}^2}^{\oplus 3} \ar[twoheadrightarrow,"\nabla(l)"]{r} \arrow[twoheadrightarrow]{d} \& \mathcal{O}_{\mathbb{P}^2} \ar[twoheadrightarrow]{d} \\
+		\mathcal{T}_f \arrow[hookrightarrow]{r} \& F \arrow[twoheadrightarrow]{r}\& \mathcal{O}_{Z(\delta(l))}
+\end{tikzcd}
+\end{center}
+By comparing the supports in the third row we conclude that $Z(\delta(l))$ is in $supp(F)$, which is $Z(\delta)$.
+\end{proof}
+
+\begin{corollary}
+    If $\mathcal{T}_f$ is free then $Z' \subset Z(\delta(l)) \cap L$
+\end{corollary}
+\begin{proof}
+    Since $\mathcal{T}_f$ is free we have that $Z$ is empty and $Z' \subset L$. Any point $p \in Z'$ must be in the zero set of the section $l\delta = l*\delta - \frac{\delta(l)}{d+2}\delta_E$, but since $l(p) = 0$ we have that $\frac{\delta(l)(p)}{d+2}\delta_E(p) = \frac{\delta(l)(p)}{d+2}(p_1,p_2,p_3) = 0$ so $\delta(l)(p) = 0$.
+\end{proof}
+
+\begin{corollary}
+    Let $L$ be a generic line so that it intersects the curve $X$ given by $f$ only in simple points. Then:
+    \begin{itemize}
+        \item $\mathcal{T}_f$ free implies that $Z'$ has length $a$
+        \item $X$ smooth implies that $Z'$ has length $h^0(\mathcal{O}_Z) + d = d^2+d$
+    \end{itemize}
+\end{corollary}
+\begin{proof}
+    The computation of $c_2 \mathcal{T}_f(a)$ and $c_2 \mathcal{T}_{f*l}(a+1)$ can be simplified in the following way: Let $n = h^0(\mathcal{O}_Z)$, $n' = h^0(\mathcal{O}_Z)$, $j = h^0(\mathcal{O}_J)$ and $j' = h^0(\mathcal{O}_{J'})$. Then $n+j = d^2 - a*d + d^2$ and $n'+j' = (d+1)^2 - (a+1)*(d+1) + (a+1)^2$.
+
+    Since $L$ contributes with $d+1$ simple points in any case, we know how the total Tjurina number behaves: we have that $j' = j + d + 1$. So by subtracting one equation from the other we have that $n'-n +d+1= -d^2+a*d-a^2 + d^2+2d+1 - ad - a - d - 1 + a^2+2a+1 = -a^2+2d+1-a-d-1+a^2+2a+1 = d+a+1$ so that $n'-n = a$. The first case is when $n=0$ so that $n' = a$, the second case happens when $n = d^2$ and $a = d$ so that $n' = d^5+d$.
+\end{proof}
+
+\textcolor{red}{Possible question: Are all $a$ points the entire $L \cap Z(\delta(l))$????}
+
+\begin{proposition}
+    If $\mathcal{T}_f$ \textcolor{blue}{or better, the additional points are given by:} is free then $Z' = L \cap Z(\delta(l))$
+\end{proposition}
+\begin{proof}
+    \textcolor{red}{TODO!!!!!}
+\end{proof}
+
+\begin{example}
+    Consider the union of two conics sharing a unique tangent given by $x = 0$, we can write explicitly $f = (z^2-x*y)*(z^2-x*y+x*z)*(z^2-x*y-x*z)$. Denote $X = V(f)$ and let $L = V(a*x+b*y+c*z)$ be a general line.
+
+    A minimal derivation of $f$ has degree $2$ and can be found by computing the canonical derivation of the pencil of two conics sharing one tangent, say $\delta = P*\partial_x + Q*\partial_y + R*\partial_z$ with $P,Q,R$ of degree $2$. Explicitly we have that $P = -x^2, Q = 2*z^2+x*y, R = x*z$.
+
+    We can also compute the length of $Z$ and $Z'$ with the additional knowledge of the Tjurina numbers for the singularities of $X \cup L$ and conclude that $X$ is free (hence $Z$ is empty) and $Z'$ has length 2. So we have the following diagram:
+    \begin{center}
+    \begin{tikzcd}[ampersand replacement=\&]
+    		\mathcal{O}_{\mathbb{P}^2}(-3) \ar[equal]{r} \ar[hookrightarrow,"\tilde{\delta}"]{d} \& \mathcal{O}_{\mathbb{P}^2}(-3) \ar[hookrightarrow,"l\delta"]{d}  \\
+    		\mathcal{T}_f(-1) \arrow[hookrightarrow]{r} \ar[twoheadrightarrow]{d} \& \mathcal{T}_{f*l} \ar[twoheadrightarrow]{r} \arrow[twoheadrightarrow]{d} \& \mathcal{O}_{L}(-3-|Z'\cap L|) \ar[equal]{d} \\
+    		\mathcal{O}_{\mathbb{P}^2}(-4) \arrow[hookrightarrow]{r} \& \mathcal{I}_{Z'}(-3) \arrow[twoheadrightarrow]{r}\& \mathcal{O}_{L}(-3-|Z'\cap L|)
+    \end{tikzcd}
+    \end{center}
+The third row implies that $Z'$ is contained in $L$ so that $|Z' \cap L| = 2$. By the lemma above we also conclude that $Z' \subset V(\delta(l)) = V(a*P+b*Q+c*R)$, so it is possible to provide a form for both points in $Z'$ in terms of $a,b,c$ by considering the intersection of $V(\delta(l))$ and $L$:
+
+\textcolor{red}{Im working in the affine patch $z=1$ because in my tests with code, $Z'$ never touched the line $z=0$. But I'm not sure how to argue that here.}
+
+We work in the affine patch $z=1$, $a*P + b*Q + c*R = 0$ implies that $-a*x^2+x*(c+b*y)+2*b = 0$. Using the equation of the line $b*y=-a*x-c$ we find $-2*a*x^2+2*b=0$ and hence (for a general line) $Z' = \{(\sqrt{\frac{b}{a}}:\frac{-\sqrt{a*b}-c}{b}:1),(-\sqrt{\frac{b}{a}}:\frac{\sqrt{a*b}-c}{b}:1)\}$. Denote the first point by $C$ and the second point by $D$.
+
+There are two distinguished lines for this example: $x = 0$ and $z = 0$. The first is the unique tangent for the singular point $(0:1:0)$ and the second is the unique line passing through both singularities $(0:1:0),(1:0:0)$. The intersection of each of those two lines with $L$ gives then two points $A = (0:-c:b)$ and $B = (-b:a:0)$ in $L$. By projecting $A,B,C,D$ to the line $z=0$ we can compute the cross-ratio $CR(A,B;C,D) = \frac{AC}{BC}*\frac{BD}{AD}$:
+\begin{equation}
+    CR(A,B;C,D) = \frac{\sqrt{\frac{b}{a}}}{\sqrt{a*b}+c-\sqrt{a}*\sqrt{b}}*\frac{-\sqrt{a*b}+c+\sqrt{a*b}}{-\sqrt{\frac{b}{a}}} = -1
+\end{equation}
+So the cross-ratio is constant for any $a,b,c$, provided that $a \not = 0$ and $b \not = 0$. (\textcolor{red}{I think there is a better argument here instead of requiring the non-vanishing conditions of a,b...}).
+\end{example}
+
+\begin{example}
+    Consider a pencil of two conics sharing two tangents given by $C_1 = x^2-z^2$ and $C_2 = y^2$ and pick the union of two smooth conics belonging to the arrangement. Let $L = V(a*x+b*y+c*z)$ be a general line. Then the canonical derivation is given by $\delta' = y*\delta$ and hence the minimal derivation is $\delta = P*\partial_x + Q*\partial_y + R*\partial_z$ with $P,Q,R$ of degree $1$ which implies that $\delta(l) = a*P + b*Q + c*R$ is also of degree $1$. Using the fact that the Tjurina number for each singularity is $3$ we conclude that the length of $Z$ is $c_2(\mathcal{T}_C(1)) = 1$, the same can be done for $Z'$ since we just need to add each intersection with $L$ in the total Tjurina number. If $L$ is generic we conclude that $Z'$ has length $c_2(\mathcal{T}_{C \cup L}(2)) = 2$. To understand the geometric configuration of $Z$ and $Z'$ we consider the following commutative diagram:
+    \begin{center}
+    \begin{tikzcd}[ampersand replacement=\&]
+    		\mathcal{O}_{\mathbb{P}^2}(-2) \ar[equal]{r} \ar[hookrightarrow,"\tilde{\delta}"]{d} \& \mathcal{O}_{\mathbb{P}^2}(-2) \ar[hookrightarrow,"l\delta"]{d}  \\
+    		\mathcal{T}_f(-1) \arrow[hookrightarrow]{r} \ar[twoheadrightarrow]{d} \& \mathcal{T}_{f*l} \ar[twoheadrightarrow]{r} \arrow[twoheadrightarrow]{d} \& \mathcal{O}_{L}(-2-|Z'\cap L|) \ar[equal]{d} \\
+    		\mathcal{I}_Z(-3) \arrow[hookrightarrow]{r} \& \mathcal{I}_{Z'}(-2) \arrow[twoheadrightarrow]{r}\& \mathcal{O}_{L}(-2-|Z'\cap L|)
+    \end{tikzcd}
+    \end{center}
+    Using the third row of the diagram and the previous lemma we can also conclude that the point $Z$ lies outside of $L$ and hence $Z \cap L = 1$ for a generic line $L$. Let $L_{\delta}$ be the line defined by $\delta(l)$, the intersection $L_{\delta} \cap L$ is precisely the unique point in $Z' \setminus Z$. We can compute this point using the explicit form for the minimal derivation:
+
+    $$P = z, Q = 0, R = x \implies \delta(l) = a*z+c*x$$
+    $$a*x+b*y+c*z = 0 \implies L \cap L_{\delta} = \{(\frac{-a}{c}:\frac{-(c^2-a^2)}{bc}:1) \}$$
+
+    \textcolor{red}{Now the splitting, I'm not sure where to put it}
+    Now, $|Z' \cap L| = 1$ implies that there is a surjection:
+    \begin{equation}
+        {\mathcal{T}_{f*l}}|_L \to \mathcal{O}_L(-3) \to 0
+    \end{equation}
+    Since $c_1(\mathcal{T}_{f*l}) = -4$ we need only to consider the possible splittings $(-1,-3)$ and $(0,-4)$. If we had ${\mathcal{T}_{f*l}}|_L \cong \mathcal{O}_L \oplus \mathcal{O}_L(-4) \to \mathcal{O}_L(-3)$ there would be a cokernel corresponding to a point in $L$. But since this morphism is a surjection we conclude this case does not occur, so we have ${\mathcal{T}_{f*l}}|_L \cong \mathcal{O}_L(-1) \oplus \mathcal{O}_L(-3)$.
+\end{example}
+\begin{example}
+    Consider our last example with $L$ a sufficiently generic line passing through the unique point $Z$ we still have that the length of $Z'$ is $2$.
+    \textcolor{red}{I'm a bit confused here because of the third exact row}
+    \begin{equation}
+        0 \to \mathcal{I}_Z(-3) \to \mathcal{I}_{Z'}(-2) \to \mathcal{O}_L(-2-|Z'\cap L|) \to 0
+    \end{equation}
+    \textcolor{red}{Since Z is in L by construction the exact sequence above seems to be in contradiction. Because it is saying that L passes through $Z'$ but does not intersect with $Z$. I think the contradiction is I assumed that $l\delta$ is a minimal derivation so we conclude that $\delta$ itself is a minimal derivation for $C \cup L$ and thus it is free?}
+
+    \textcolor{red}{The original purpose of the example 1.3 was to look at $L_{\delta} = \delta(l)$ to conclude that $\mathcal{T}_{f*l}|_{L_{\delta}} = \mathcal{O}_{L_{\delta}}(-4) \oplus \mathcal{O}_{L_{\delta}}$ as we spoke in our last meeting.}
+\end{example}
+
+\begin{proposition}
+    Let $X = V(f)$ be a free curve with $\mathcal{T}_f \cong \mathcal{O}_{\mathbb{P}^2}(-a) \oplus \mathcal{O}_{\mathbb{P}^2}(-b)$ where $a \leq b$ and suppose that $l$ is a linear form such that $H^0(\mathcal{T}_{l*f}(a)) \not = 0$. Then $\mathcal{T}_{l*f}$ is free.
+\end{proposition}
+\begin{proof}
+    Let $\xi$ be a derivation of degree $a$ such that $\xi(l*f) = 0$. The Leibniz rule implies that $f*\xi(l) = -l*\xi(f)$ so $\xi(f) \in (f)$ and hence $\xi$ is in $Der(f)$ (\textcolor{red}{and $\xi(f) = -\frac{\xi(l)}{l}*f$}). There is a canonical morphism given by $\mathcal{T}_{l*f} \to \mathcal{T}_{f}$ sending $\xi$ to $\xi - \frac{\xi(f)}{f*deg(f)}*\delta_E$
+\end{proof}
+
+\end{document}
